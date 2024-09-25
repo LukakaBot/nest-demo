@@ -11,13 +11,12 @@ import {
   // Res,
   Body,
 } from '@nestjs/common';
-// import { CreateCatDto } from './create-cat.dto';
 // import { ListAllEntities } from '../common/common.dto';
-// import { UpdateCatDto } from './update-cat.dto';
+// import { UpdateCatDto } from './cats.dto';
 // import { Response } from 'express';
 import { CatsService } from './cats.service';
 import { Cat } from 'src/cats/interfaces/cats.interfaces';
-import { CreateCatDto } from './create-cat.dto';
+import { CreateCatDto } from './dto/cats.dto';
 
 @Controller('cats')
 export class CatsController {
