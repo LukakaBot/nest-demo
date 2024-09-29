@@ -1,14 +1,25 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { CatsController } from './cats/cats.controller';
 import { AppService } from './app.service';
-import { DogsService } from './dogs/dogs.service';
-import { CatsService } from './cats/cats.service';
-import { DogsController } from './dogs/dogs.controller';
+import { CatsModule } from './cats/cats.module';
+import { DogsModule } from './dogs/dogs.module';
+import { PrismaModule } from './prisma/prisma.module';
+import { ArticlesModule } from './articles/articles.module';
+import { ProductsModule } from './products/products.module';
 
 @Module({
-  imports: [],
-  controllers: [AppController, CatsController, DogsController],
-  providers: [AppService, CatsService, DogsService],
+  imports: [
+    CatsModule,
+    DogsModule,
+    PrismaModule,
+    ArticlesModule,
+    ProductsModule,
+  ],
+  controllers: [AppController],
+  providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply().forRoutes(AppController);
+  }
+}
