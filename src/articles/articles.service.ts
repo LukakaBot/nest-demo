@@ -5,15 +5,15 @@ import { UpdateArticleDto } from './dto/update-article.dto';
 
 @Injectable()
 export class ArticlesService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prismaService: PrismaService) {}
 
   create(createArticleDto: CreateArticleDto) {
+    console.log(createArticleDto);
     return 'This action adds a new article';
   }
 
   findAll() {
-    // return `This action returns all articles`;
-    return this.prisma.article.findMany({});
+    return this.prismaService.article.findMany({});
   }
 
   findOne(id: number) {
@@ -21,6 +21,7 @@ export class ArticlesService {
   }
 
   update(id: number, updateArticleDto: UpdateArticleDto) {
+    console.log(updateArticleDto);
     return `This action updates a #${id} article`;
   }
 
